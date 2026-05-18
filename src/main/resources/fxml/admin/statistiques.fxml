@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0"
+            styleClass="dashboard-root"
+            stylesheets="@../../css/app.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.ac.uir.gestionhandicap.controller.admin.StatistiquesController">
+
+    <children>
+
+        <AnchorPane prefWidth="250.0"
+                    styleClass="sidebar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <children>
+                <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="22.0" layoutY="22.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/logo_uir.jpg" />
+                    </image>
+                </ImageView>
+                <Label layoutX="78.0" layoutY="35.0" text="UIR" styleClass="sidebar-logo-text" />
+                <Label layoutX="22.0" layoutY="88.0" text="Espace administrateur" styleClass="sidebar-subtitle" />
+
+                <VBox layoutX="14.0" layoutY="130.0" prefWidth="222.0" spacing="6.0">
+                    <children>
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Tableau de bord" styleClass="sidebar-button" onAction="#handleAccueil" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Demandes" styleClass="sidebar-button" onAction="#handleDemandes" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Réclamations" styleClass="sidebar-button" onAction="#handleReclamations" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Archivage" styleClass="sidebar-button" onAction="#handleArchivage" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Validation comptes" styleClass="sidebar-button" onAction="#handleValidationComptes" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Statistiques" styleClass="sidebar-button-active" onAction="#handleStatistiques" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Saisons" styleClass="sidebar-button" onAction="#handleSaisons" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Profil" styleClass="sidebar-button" onAction="#handleProfil" />
+                    </children>
+                </VBox>
+
+                <Button prefHeight="48.0" prefWidth="222.0"
+                        text="Déconnexion"
+                        styleClass="logout-button"
+                        onAction="#handleLogout"
+                        AnchorPane.leftAnchor="14.0"
+                        AnchorPane.bottomAnchor="24.0" />
+            </children>
+        </AnchorPane>
+
+        <AnchorPane prefHeight="88.0"
+                    styleClass="topbar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label layoutX="36.0" layoutY="28.0" text="Statistiques" styleClass="topbar-title" />
+                <HBox alignment="CENTER_RIGHT" spacing="14.0"
+                      AnchorPane.topAnchor="0.0"
+                      AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.rightAnchor="30.0">
+                    <children>
+                        <StackPane prefHeight="40.0" prefWidth="40.0" styleClass="avatar-clickable" onMouseClicked="#handleProfil">
+                            <children>
+                                <Circle radius="20.0" styleClass="avatar" />
+                                <Label fx:id="avatarInitialLabel" text="A" styleClass="avatar-initial" />
+                            </children>
+                        </StackPane>
+                        <Label fx:id="userNameLabel" text="Admin" styleClass="topbar-user" />
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+
+        <ScrollPane fitToWidth="true"
+                    styleClass="dashboard-scroll"
+                    AnchorPane.topAnchor="88.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <content>
+                <VBox spacing="20.0" styleClass="dashboard-content">
+                    <padding>
+                        <Insets top="20.0" right="36.0" bottom="30.0" left="36.0" />
+                    </padding>
+                    <children>
+
+                        <AnchorPane prefHeight="86.0" styleClass="welcome-banner">
+                            <children>
+                                <Label layoutX="30.0" layoutY="22.0" text="Vue d'ensemble" styleClass="welcome-title" />
+                                <Label layoutX="30.0" layoutY="54.0"
+                                       text="Indicateurs clés et répartitions de l'activité de la plateforme."
+                                       styleClass="welcome-subtitle" />
+                            </children>
+                        </AnchorPane>
+
+                        <HBox spacing="20.0">
+                            <children>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="118.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Total utilisateurs" styleClass="stat-label" />
+                                        <Label fx:id="kpiUsersLabel" layoutX="22.0" layoutY="50.0" text="0" styleClass="stat-number" />
+                                        <Label fx:id="kpiUsersSubLabel" layoutX="22.0" layoutY="92.0" text="—" styleClass="section-subtitle" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="118.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Demandes" styleClass="stat-label" />
+                                        <Label fx:id="kpiDemandesLabel" layoutX="22.0" layoutY="50.0" text="0" styleClass="stat-number" />
+                                        <Label fx:id="kpiDemandesSubLabel" layoutX="22.0" layoutY="92.0" text="—" styleClass="section-subtitle" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="118.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Réclamations" styleClass="stat-label" />
+                                        <Label fx:id="kpiReclamationsLabel" layoutX="22.0" layoutY="50.0" text="0" styleClass="stat-number" />
+                                        <Label fx:id="kpiReclamationsSubLabel" layoutX="22.0" layoutY="92.0" text="—" styleClass="section-subtitle" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="118.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Comptes à valider" styleClass="stat-label" />
+                                        <Label fx:id="kpiAttenteLabel" layoutX="22.0" layoutY="50.0" text="0" styleClass="stat-number" />
+                                        <Label layoutX="22.0" layoutY="92.0" text="à examiner" styleClass="section-subtitle" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+
+                        <HBox spacing="20.0">
+                            <children>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="380.0" styleClass="section-card">
+                                    <children>
+                                        <Label layoutX="28.0" layoutY="22.0" text="Demandes par statut" styleClass="section-title" />
+                                        <Label layoutX="28.0" layoutY="54.0" text="Répartition globale" styleClass="section-subtitle" />
+                                        <PieChart fx:id="demandesPieChart"
+                                                  legendVisible="true"
+                                                  labelsVisible="true"
+                                                  AnchorPane.topAnchor="80.0"
+                                                  AnchorPane.leftAnchor="20.0"
+                                                  AnchorPane.rightAnchor="20.0"
+                                                  AnchorPane.bottomAnchor="20.0" />
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="380.0" styleClass="section-card">
+                                    <children>
+                                        <Label layoutX="28.0" layoutY="22.0" text="Réclamations par statut" styleClass="section-title" />
+                                        <Label layoutX="28.0" layoutY="54.0" text="Répartition globale" styleClass="section-subtitle" />
+                                        <PieChart fx:id="reclamationsPieChart"
+                                                  legendVisible="true"
+                                                  labelsVisible="true"
+                                                  AnchorPane.topAnchor="80.0"
+                                                  AnchorPane.leftAnchor="20.0"
+                                                  AnchorPane.rightAnchor="20.0"
+                                                  AnchorPane.bottomAnchor="20.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+
+                        <HBox spacing="20.0">
+                            <children>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="320.0" styleClass="section-card">
+                                    <children>
+                                        <Label layoutX="28.0" layoutY="22.0" text="Demandes par type" styleClass="section-title" />
+                                        <Label layoutX="28.0" layoutY="54.0" text="Nombre de demandes pour chaque catégorie" styleClass="section-subtitle" />
+                                        <BarChart fx:id="typesDemandeChart"
+                                                  animated="false"
+                                                  legendVisible="false"
+                                                  AnchorPane.topAnchor="80.0"
+                                                  AnchorPane.leftAnchor="8.0"
+                                                  AnchorPane.rightAnchor="8.0"
+                                                  AnchorPane.bottomAnchor="8.0">
+                                            <xAxis>
+                                                <CategoryAxis label="Type de demande" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis label="Nombre" minorTickCount="1" />
+                                            </yAxis>
+                                        </BarChart>
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="320.0" styleClass="section-card">
+                                    <children>
+                                        <Label layoutX="28.0" layoutY="22.0" text="Réclamations par priorité" styleClass="section-title" />
+                                        <Label layoutX="28.0" layoutY="54.0" text="Nombre de réclamations pour chaque niveau de priorité" styleClass="section-subtitle" />
+                                        <BarChart fx:id="prioritesChart"
+                                                  animated="false"
+                                                  legendVisible="false"
+                                                  AnchorPane.topAnchor="80.0"
+                                                  AnchorPane.leftAnchor="8.0"
+                                                  AnchorPane.rightAnchor="8.0"
+                                                  AnchorPane.bottomAnchor="8.0">
+                                            <xAxis>
+                                                <CategoryAxis label="Priorité" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis label="Nombre" minorTickCount="1" />
+                                            </yAxis>
+                                        </BarChart>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+    </children>
+</AnchorPane>

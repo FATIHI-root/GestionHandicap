@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0"
+            styleClass="dashboard-root"
+            stylesheets="@../../css/app.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.ac.uir.gestionhandicap.controller.admin.ArchivesController">
+
+    <children>
+
+        <AnchorPane prefWidth="250.0"
+                    styleClass="sidebar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <children>
+                <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="22.0" layoutY="22.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/logo_uir.jpg" />
+                    </image>
+                </ImageView>
+                <Label layoutX="78.0" layoutY="35.0" text="UIR" styleClass="sidebar-logo-text" />
+                <Label layoutX="22.0" layoutY="88.0" text="Espace administrateur" styleClass="sidebar-subtitle" />
+
+                <VBox layoutX="14.0" layoutY="130.0" prefWidth="222.0" spacing="6.0">
+                    <children>
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Tableau de bord" styleClass="sidebar-button" onAction="#handleAccueil" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Demandes" styleClass="sidebar-button" onAction="#handleDemandes" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Réclamations" styleClass="sidebar-button" onAction="#handleReclamations" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Archivage" styleClass="sidebar-button-active" onAction="#handleArchivage" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Validation comptes" styleClass="sidebar-button" onAction="#handleValidationComptes" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Statistiques" styleClass="sidebar-button" onAction="#handleStatistiques" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Saisons" styleClass="sidebar-button" onAction="#handleSaisons" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Profil" styleClass="sidebar-button" onAction="#handleProfil" />
+                    </children>
+                </VBox>
+
+                <Button prefHeight="48.0" prefWidth="222.0"
+                        text="Déconnexion"
+                        styleClass="logout-button"
+                        onAction="#handleLogout"
+                        AnchorPane.leftAnchor="14.0"
+                        AnchorPane.bottomAnchor="24.0" />
+            </children>
+        </AnchorPane>
+
+        <AnchorPane prefHeight="88.0"
+                    styleClass="topbar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label layoutX="36.0" layoutY="28.0" text="Archivage" styleClass="topbar-title" />
+                <HBox alignment="CENTER_RIGHT" spacing="14.0"
+                      AnchorPane.topAnchor="0.0"
+                      AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.rightAnchor="30.0">
+                    <children>
+                        <StackPane prefHeight="40.0" prefWidth="40.0" styleClass="avatar-clickable" onMouseClicked="#handleProfil">
+                            <children>
+                                <Circle radius="20.0" styleClass="avatar" />
+                                <Label fx:id="avatarInitialLabel" text="A" styleClass="avatar-initial" />
+                            </children>
+                        </StackPane>
+                        <Label fx:id="userNameLabel" text="Admin" styleClass="topbar-user" />
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+
+        <ScrollPane fitToWidth="true"
+                    styleClass="dashboard-scroll"
+                    AnchorPane.topAnchor="88.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <content>
+                <VBox spacing="20.0" styleClass="dashboard-content">
+                    <padding>
+                        <Insets top="20.0" right="36.0" bottom="30.0" left="36.0" />
+                    </padding>
+                    <children>
+
+                        <AnchorPane prefHeight="86.0" styleClass="welcome-banner">
+                            <children>
+                                <Label layoutX="30.0" layoutY="22.0" text="Archives" styleClass="welcome-title" />
+                                <Label layoutX="30.0" layoutY="54.0"
+                                       text="Consultez l'historique des demandes et réclamations clôturées."
+                                       styleClass="welcome-subtitle" />
+                                <Button prefHeight="42.0" prefWidth="240.0"
+                                        text="Exporter demandes (CSV/Excel/PDF)"
+                                        styleClass="outline-button"
+                                        onAction="#handleExportDemandes"
+                                        AnchorPane.topAnchor="22.0"
+                                        AnchorPane.rightAnchor="280.0" />
+                                <Button prefHeight="42.0" prefWidth="250.0"
+                                        text="Exporter réclamations (CSV/Excel/PDF)"
+                                        styleClass="primary-button"
+                                        onAction="#handleExportReclamations"
+                                        AnchorPane.topAnchor="22.0"
+                                        AnchorPane.rightAnchor="24.0" />
+                            </children>
+                        </AnchorPane>
+
+                        <HBox spacing="20.0">
+                            <children>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="110.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Demandes archivées" styleClass="stat-label" />
+                                        <Label fx:id="statDemandesLabel" layoutX="22.0" layoutY="50.0" text="0" styleClass="stat-number" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="110.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Réclamations archivées" styleClass="stat-label" />
+                                        <Label fx:id="statReclamationsLabel" layoutX="22.0" layoutY="50.0" text="0" styleClass="stat-number" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+
+                        <AnchorPane prefHeight="600.0" styleClass="section-card">
+                            <children>
+                                <Label layoutX="28.0" layoutY="22.0" text="Dossiers clôturés" styleClass="section-title" />
+                                <Label layoutX="28.0" layoutY="54.0"
+                                       text="Cliquez sur 'Historique' pour voir la chronologie des décisions admin."
+                                       styleClass="section-subtitle" />
+
+                                <Label layoutX="28.0" layoutY="84.0" text="Filtrer par saison" styleClass="field-label" />
+                                <ComboBox fx:id="filtreSaisonCombo"
+                                          layoutX="28.0" layoutY="106.0"
+                                          prefHeight="34.0" prefWidth="220.0" />
+                                <TextField fx:id="searchField"
+                                           layoutX="268.0" layoutY="106.0"
+                                           prefHeight="34.0" prefWidth="260.0"
+                                           promptText="Rechercher..." />
+
+                                <TabPane AnchorPane.topAnchor="156.0"
+                                         AnchorPane.leftAnchor="24.0"
+                                         AnchorPane.rightAnchor="24.0"
+                                         AnchorPane.bottomAnchor="24.0">
+                                    <tabs>
+                                        <Tab text="Demandes" closable="false">
+                                            <content>
+                                                <AnchorPane>
+                                                    <children>
+                                                        <TableView fx:id="demandesTable"
+                                                                   AnchorPane.topAnchor="0.0"
+                                                                   AnchorPane.leftAnchor="0.0"
+                                                                   AnchorPane.rightAnchor="0.0"
+                                                                   AnchorPane.bottomAnchor="0.0">
+                                                            <columns>
+                                                                <TableColumn fx:id="colDemId" text="ID" prefWidth="70.0" />
+                                                                <TableColumn fx:id="colDemType" text="Type" prefWidth="180.0" />
+                                                                <TableColumn fx:id="colDemObjet" text="Objet" prefWidth="240.0" />
+                                                                <TableColumn fx:id="colDemEtudiant" text="Étudiant" prefWidth="170.0" />
+                                                                <TableColumn fx:id="colDemDate" text="Date" prefWidth="110.0" />
+                                                                <TableColumn fx:id="colDemStatut" text="Statut" prefWidth="120.0" />
+                                                                <TableColumn fx:id="colDemActions" text="Actions" prefWidth="160.0" />
+                                                            </columns>
+                                                        </TableView>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="Réclamations" closable="false">
+                                            <content>
+                                                <AnchorPane>
+                                                    <children>
+                                                        <TableView fx:id="reclamationsTable"
+                                                                   AnchorPane.topAnchor="0.0"
+                                                                   AnchorPane.leftAnchor="0.0"
+                                                                   AnchorPane.rightAnchor="0.0"
+                                                                   AnchorPane.bottomAnchor="0.0">
+                                                            <columns>
+                                                                <TableColumn fx:id="colRecId" text="ID" prefWidth="70.0" />
+                                                                <TableColumn fx:id="colRecObjet" text="Objet" prefWidth="280.0" />
+                                                                <TableColumn fx:id="colRecEtudiant" text="Étudiant" prefWidth="170.0" />
+                                                                <TableColumn fx:id="colRecPriorite" text="Priorité" prefWidth="100.0" />
+                                                                <TableColumn fx:id="colRecDate" text="Date" prefWidth="110.0" />
+                                                                <TableColumn fx:id="colRecStatut" text="Statut" prefWidth="120.0" />
+                                                                <TableColumn fx:id="colRecActions" text="Actions" prefWidth="160.0" />
+                                                            </columns>
+                                                        </TableView>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </children>
+                        </AnchorPane>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+    </children>
+</AnchorPane>

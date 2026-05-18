@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0"
+            styleClass="login-root"
+            stylesheets="@../../css/app.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.ac.uir.gestionhandicap.controller.auth.RegisterController">
+
+    <children>
+
+        <AnchorPane prefWidth="540.0"
+                    styleClass="left-panel"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <children>
+                <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="60.0" layoutY="40.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/logo_uir.jpg" />
+                    </image>
+                </ImageView>
+
+                <Label layoutX="80.0" layoutY="190.0" text="Créer un compte" styleClass="title-white" />
+
+                <Label layoutX="80.0" layoutY="265.0"
+                       text="Accédez à la plateforme de gestion des demandes"
+                       styleClass="subtitle-white" />
+                <Label layoutX="80.0" layoutY="290.0"
+                       text="et réclamations des personnes en situation"
+                       styleClass="subtitle-white" />
+                <Label layoutX="80.0" layoutY="315.0"
+                       text="de handicap au sein de l'université."
+                       styleClass="subtitle-white" />
+
+                <AnchorPane layoutX="80.0" layoutY="370.0" prefHeight="44.0" prefWidth="230.0" styleClass="info-badge">
+                    <children>
+                        <Label layoutX="20.0" layoutY="12.0" text="Interface d'inscription UIR" styleClass="info-badge-text" />
+                    </children>
+                </AnchorPane>
+
+                <AnchorPane layoutX="80.0" layoutY="455.0" prefHeight="245.0" prefWidth="400.0" styleClass="decorative-block">
+                    <children>
+                        <AnchorPane layoutX="30.0" layoutY="35.0" prefHeight="165.0" prefWidth="170.0" styleClass="decorative-card">
+                            <children>
+                                <Circle layoutX="85.0" layoutY="55.0" radius="28.0" styleClass="logo-circle" />
+                                <Rectangle layoutX="55.0" layoutY="100.0" width="55.0" height="10.0" arcWidth="8" arcHeight="8" fill="#073567" />
+                                <Rectangle layoutX="35.0" layoutY="125.0" width="100.0" height="10.0" arcWidth="6" arcHeight="6" fill="#9DB2CC" />
+                            </children>
+                        </AnchorPane>
+                        <Rectangle layoutX="220.0" layoutY="55.0" width="130.0" height="18.0" arcWidth="8" arcHeight="8" fill="#D2D700" />
+                        <Rectangle layoutX="220.0" layoutY="85.0" width="100.0" height="12.0" arcWidth="6" arcHeight="6" fill="#C7D2E2" />
+                        <Rectangle layoutX="220.0" layoutY="108.0" width="115.0" height="12.0" arcWidth="6" arcHeight="6" fill="#C7D2E2" />
+                        <Rectangle layoutX="220.0" layoutY="130.0" width="80.0" height="12.0" arcWidth="6" arcHeight="6" fill="#C7D2E2" />
+                        <AnchorPane layoutX="220.0" layoutY="155.0" prefHeight="65.0" prefWidth="120.0" styleClass="decorative-card">
+                            <children>
+                                <Rectangle layoutX="15.0" layoutY="18.0" width="70.0" height="11.0" arcWidth="6" arcHeight="6" fill="#D2D700" />
+                                <Rectangle layoutX="15.0" layoutY="38.0" width="50.0" height="9.0" arcWidth="6" arcHeight="6" fill="#C7D2E2" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+
+        <StackPane AnchorPane.topAnchor="0.0"
+                   AnchorPane.leftAnchor="540.0"
+                   AnchorPane.rightAnchor="0.0"
+                   AnchorPane.bottomAnchor="0.0">
+            <children>
+                <AnchorPane prefHeight="740.0" prefWidth="680.0"
+                            maxHeight="740.0" maxWidth="680.0"
+                            minHeight="740.0" minWidth="680.0"
+                            styleClass="login-card">
+                    <children>
+                        <Label layoutX="40.0" layoutY="30.0" text="Inscription" styleClass="card-title" />
+                        <Label layoutX="40.0" layoutY="75.0"
+                               text="Remplissez les informations ci-dessous pour créer votre compte."
+                               styleClass="card-subtitle" />
+
+                        <AnchorPane layoutX="40.0" layoutY="110.0" prefHeight="48.0" prefWidth="600.0" styleClass="info-banner">
+                            <children>
+                                <Circle layoutX="22.0" layoutY="24.0" radius="8.0" styleClass="logo-circle" />
+                                <Label layoutX="42.0" layoutY="15.0"
+                                       text="Le compte sera validé par l'administration après vérification du document justificatif."
+                                       styleClass="info-banner-text" />
+                            </children>
+                        </AnchorPane>
+
+                        <Label layoutX="40.0" layoutY="180.0" text="Nom" styleClass="field-label" />
+                        <TextField fx:id="nomField"
+                                   layoutX="40.0" layoutY="203.0"
+                                   prefHeight="46.0" prefWidth="285.0"
+                                   promptText="Votre nom" />
+
+                        <Label layoutX="355.0" layoutY="180.0" text="Prénom" styleClass="field-label" />
+                        <TextField fx:id="prenomField"
+                                   layoutX="355.0" layoutY="203.0"
+                                   prefHeight="46.0" prefWidth="285.0"
+                                   promptText="Votre prénom" />
+
+                        <Label layoutX="40.0" layoutY="265.0" text="Email institutionnel" styleClass="field-label" />
+                        <TextField fx:id="emailField"
+                                   layoutX="40.0" layoutY="288.0"
+                                   prefHeight="46.0" prefWidth="600.0"
+                                   promptText="nom@uir.ac.ma" />
+
+                        <Label layoutX="40.0" layoutY="350.0" text="Téléphone" styleClass="field-label" />
+                        <TextField fx:id="telephoneField"
+                                   layoutX="40.0" layoutY="373.0"
+                                   prefHeight="46.0" prefWidth="285.0"
+                                   promptText="06 XX XX XX XX" />
+
+                        <Label layoutX="355.0" layoutY="350.0" text="Type de handicap" styleClass="field-label" />
+                        <ComboBox fx:id="typeHandicapComboBox"
+                                  layoutX="355.0" layoutY="373.0"
+                                  prefHeight="46.0" prefWidth="285.0"
+                                  promptText="Sélectionner" />
+
+                        <Label layoutX="40.0" layoutY="435.0" text="Mot de passe" styleClass="field-label" />
+                        <PasswordField fx:id="passwordField"
+                                       layoutX="40.0" layoutY="458.0"
+                                       prefHeight="46.0" prefWidth="285.0"
+                                       promptText="Mot de passe" />
+
+                        <Label layoutX="355.0" layoutY="435.0" text="Confirmer le mot de passe" styleClass="field-label" />
+                        <PasswordField fx:id="confirmPasswordField"
+                                       layoutX="355.0" layoutY="458.0"
+                                       prefHeight="46.0" prefWidth="285.0"
+                                       promptText="Mot de passe" />
+
+                        <Label layoutX="40.0" layoutY="520.0" text="Document justificatif" styleClass="field-label" />
+                        <AnchorPane fx:id="uploadZone"
+                                    layoutX="40.0" layoutY="543.0" prefHeight="100.0" prefWidth="600.0"
+                                    styleClass="upload-zone"
+                                    onMouseClicked="#handleChooseFile"
+                                    onDragOver="#handleDragOver"
+                                    onDragDropped="#handleDragDropped">
+                            <children>
+                                <Rectangle layoutX="20.0" layoutY="28.0" width="44.0" height="44.0" arcWidth="12" arcHeight="12" fill="#D2D700" mouseTransparent="true" />
+                                <Line startX="42.0" startY="38.0" endX="42.0" endY="62.0" stroke="#073567" strokeWidth="2.5" mouseTransparent="true" />
+                                <Line startX="30.0" startY="50.0" endX="54.0" endY="50.0" stroke="#073567" strokeWidth="2.5" mouseTransparent="true" />
+                                <Label layoutX="85.0" layoutY="18.0" text="Importer un document" styleClass="upload-title" mouseTransparent="true" />
+                                <Label layoutX="85.0" layoutY="42.0" text="PDF, JPG ou PNG — certificat ou justificatif du handicap" styleClass="upload-hint" mouseTransparent="true" />
+                                <Label fx:id="fileNameLabel" layoutX="85.0" layoutY="66.0" text="Déposer le fichier ici ou cliquer pour parcourir" styleClass="upload-filename" mouseTransparent="true" />
+                                <Button layoutX="470.0" layoutY="32.0"
+                                        prefHeight="36.0" prefWidth="115.0"
+                                        text="Parcourir"
+                                        styleClass="secondary-button"
+                                        onAction="#handleChooseFile" />
+                            </children>
+                        </AnchorPane>
+
+                        <AnchorPane layoutX="40.0" layoutY="660.0" prefHeight="44.0" prefWidth="600.0" styleClass="note-warning">
+                            <children>
+                                <Label layoutX="20.0" layoutY="14.0"
+                                       text="Après envoi, l'administrateur pourra consulter le document et valider votre compte."
+                                       styleClass="note-warning-text" />
+                            </children>
+                        </AnchorPane>
+
+                        <Button layoutX="40.0" layoutY="715.0"
+                                prefHeight="48.0" prefWidth="285.0"
+                                text="S'inscrire"
+                                styleClass="primary-button"
+                                onAction="#handleRegister" />
+
+                        <Button layoutX="355.0" layoutY="715.0"
+                                prefHeight="48.0" prefWidth="285.0"
+                                text="Retour"
+                                styleClass="outline-button"
+                                onAction="#handleGoToLogin" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </StackPane>
+
+    </children>
+</AnchorPane>

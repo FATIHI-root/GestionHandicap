@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0"
+            styleClass="dashboard-root"
+            stylesheets="@../../css/app.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.ac.uir.gestionhandicap.controller.user.UserDashboardController">
+
+    <children>
+
+        <AnchorPane prefWidth="250.0"
+                    styleClass="sidebar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <children>
+                <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="22.0" layoutY="22.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/logo_uir.jpg" />
+                    </image>
+                </ImageView>
+                <Label layoutX="78.0" layoutY="35.0" text="UIR" styleClass="sidebar-logo-text" />
+                <Label layoutX="22.0" layoutY="88.0" text="Espace utilisateur" styleClass="sidebar-subtitle" />
+
+                <VBox layoutX="14.0" layoutY="130.0" prefWidth="222.0" spacing="6.0">
+                    <children>
+                        <Button prefHeight="44.0" prefWidth="222.0"
+                                text="Accueil"
+                                styleClass="sidebar-button-active"
+                                onAction="#handleAccueil" />
+                        <Button prefHeight="44.0" prefWidth="222.0"
+                                text="Mes demandes"
+                                styleClass="sidebar-button"
+                                onAction="#handleMesDemandes" />
+                        <Button prefHeight="44.0" prefWidth="222.0"
+                                text="Mes réclamations"
+                                styleClass="sidebar-button"
+                                onAction="#handleMesReclamations" />
+                        <Button prefHeight="44.0" prefWidth="222.0"
+                                text="Nouvelle demande"
+                                styleClass="sidebar-button"
+                                onAction="#handleNouvelleDemande" />
+                        <Button prefHeight="44.0" prefWidth="222.0"
+                                text="Nouvelle réclamation"
+                                styleClass="sidebar-button"
+                                onAction="#handleNouvelleReclamation" />
+                        <Button prefHeight="44.0" prefWidth="222.0"
+                                text="Profil"
+                                styleClass="sidebar-button"
+                                onAction="#handleProfil" />
+                    </children>
+                </VBox>
+
+                <Button prefHeight="48.0" prefWidth="222.0"
+                        text="Déconnexion"
+                        styleClass="logout-button"
+                        onAction="#handleLogout"
+                        AnchorPane.leftAnchor="14.0"
+                        AnchorPane.bottomAnchor="24.0" />
+            </children>
+        </AnchorPane>
+
+        <AnchorPane prefHeight="88.0"
+                    styleClass="topbar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label layoutX="36.0" layoutY="28.0" text="Dashboard Utilisateur" styleClass="topbar-title" />
+
+                <HBox alignment="CENTER_RIGHT" spacing="14.0"
+                      AnchorPane.topAnchor="0.0"
+                      AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.rightAnchor="30.0">
+                    <children>
+                        <TextField fx:id="searchField"
+                                   prefHeight="40.0" prefWidth="220.0"
+                                   promptText="Recherche..."
+                                   styleClass="search-box" />
+
+                        <StackPane prefHeight="40.0" prefWidth="40.0" styleClass="avatar-clickable" onMouseClicked="#handleProfil">
+                            <children>
+                                <Circle radius="20.0" styleClass="avatar" />
+                                <Label fx:id="avatarInitialLabel" text="U" styleClass="avatar-initial" />
+                            </children>
+                        </StackPane>
+
+                        <Label fx:id="userNameLabel" text="Utilisateur" styleClass="topbar-user" />
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+
+        <ScrollPane fitToWidth="true"
+                    styleClass="dashboard-scroll"
+                    AnchorPane.topAnchor="88.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <content>
+                <VBox spacing="20.0" styleClass="dashboard-content">
+                    <padding>
+                        <Insets top="20.0" right="36.0" bottom="30.0" left="36.0" />
+                    </padding>
+                    <children>
+
+                        <AnchorPane prefHeight="96.0" styleClass="welcome-banner">
+                            <children>
+                                <Label layoutX="30.0" layoutY="22.0"
+                                       text="Bienvenue sur votre espace personnel"
+                                       styleClass="welcome-title" />
+                                <Label layoutX="30.0" layoutY="58.0"
+                                       text="Suivez vos demandes, vos réclamations et l'état de vos dossiers en temps réel."
+                                       styleClass="welcome-subtitle" />
+                                <Button prefHeight="42.0" prefWidth="180.0"
+                                        text="Nouvelle demande"
+                                        styleClass="primary-button"
+                                        onAction="#handleNouvelleDemande"
+                                        AnchorPane.topAnchor="26.0"
+                                        AnchorPane.rightAnchor="24.0" />
+                            </children>
+                        </AnchorPane>
+
+                        <HBox spacing="20.0">
+                            <children>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="118.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Mes demandes" styleClass="stat-label" />
+                                        <Label fx:id="statDemandesLabel" layoutX="22.0" layoutY="50.0" text="—" styleClass="stat-number" />
+                                        <AnchorPane layoutY="22.0" prefHeight="28.0" prefWidth="78.0" styleClass="badge-success"
+                                                    AnchorPane.rightAnchor="20.0">
+                                            <children>
+                                                <Label layoutX="14.0" layoutY="6.0" text="Actives" styleClass="badge-success-text" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="118.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="En cours" styleClass="stat-label" />
+                                        <Label fx:id="statEnCoursLabel" layoutX="22.0" layoutY="50.0" text="—" styleClass="stat-number" />
+                                        <AnchorPane layoutY="22.0" prefHeight="28.0" prefWidth="68.0" styleClass="badge-warning"
+                                                    AnchorPane.rightAnchor="20.0">
+                                            <children>
+                                                <Label layoutX="18.0" layoutY="6.0" text="Suivi" styleClass="badge-warning-text" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="118.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Réclamations" styleClass="stat-label" />
+                                        <Label fx:id="statReclamationsLabel" layoutX="22.0" layoutY="50.0" text="—" styleClass="stat-number" />
+                                        <AnchorPane layoutY="22.0" prefHeight="28.0" prefWidth="82.0" styleClass="badge-warning"
+                                                    AnchorPane.rightAnchor="20.0">
+                                            <children>
+                                                <Label layoutX="13.0" layoutY="6.0" text="Ouvertes" styleClass="badge-warning-text" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="118.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Acceptées" styleClass="stat-label" />
+                                        <Label fx:id="statAccepteesLabel" layoutX="22.0" layoutY="50.0" text="—" styleClass="stat-number" />
+                                        <AnchorPane layoutY="22.0" prefHeight="28.0" prefWidth="78.0" styleClass="badge-success"
+                                                    AnchorPane.rightAnchor="20.0">
+                                            <children>
+                                                <Label layoutX="13.0" layoutY="6.0" text="Validées" styleClass="badge-success-text" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+
+                        <HBox spacing="20.0">
+                            <children>
+                                <VBox spacing="6.0" prefWidth="700.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <AnchorPane prefHeight="380.0" styleClass="section-card">
+                                            <children>
+                                                <Label layoutX="28.0" layoutY="22.0" text="Mes demandes récentes" styleClass="section-title" />
+                                                <Label layoutX="28.0" layoutY="54.0" text="Suivez l'avancement de vos derniers dossiers" styleClass="section-subtitle" />
+
+                                                <TableView fx:id="demandesTable"
+                                                           prefHeight="260.0"
+                                                           AnchorPane.topAnchor="84.0"
+                                                           AnchorPane.leftAnchor="24.0"
+                                                           AnchorPane.rightAnchor="24.0"
+                                                           AnchorPane.bottomAnchor="24.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="colDemandeId" text="ID" prefWidth="80.0" />
+                                                        <TableColumn fx:id="colDemandeType" text="Type" prefWidth="230.0" />
+                                                        <TableColumn fx:id="colDemandeDate" text="Date" prefWidth="130.0" />
+                                                        <TableColumn fx:id="colDemandeStatut" text="Statut" prefWidth="120.0" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="20.0" prefWidth="320.0">
+                                    <children>
+                                        <AnchorPane prefHeight="180.0" styleClass="section-card">
+                                            <children>
+                                                <Label layoutX="24.0" layoutY="20.0" text="Suivi rapide" styleClass="section-title" />
+                                                <Label layoutX="24.0" layoutY="52.0" text="Résumé de votre situation" styleClass="section-subtitle" />
+
+                                                <AnchorPane layoutY="84.0" prefHeight="30.0"
+                                                            styleClass="pill-success"
+                                                            AnchorPane.leftAnchor="24.0"
+                                                            AnchorPane.rightAnchor="24.0">
+                                                    <children>
+                                                        <Label fx:id="pillAccepteesLabel" layoutX="14.0" layoutY="6.0"
+                                                               text="— demandes acceptées" styleClass="pill-success-text" />
+                                                    </children>
+                                                </AnchorPane>
+
+                                                <AnchorPane layoutY="120.0" prefHeight="30.0"
+                                                            styleClass="pill-warning"
+                                                            AnchorPane.leftAnchor="24.0"
+                                                            AnchorPane.rightAnchor="24.0">
+                                                    <children>
+                                                        <Label fx:id="pillEnCoursLabel" layoutX="14.0" layoutY="6.0"
+                                                               text="— demandes en cours" styleClass="pill-warning-text" />
+                                                    </children>
+                                                </AnchorPane>
+
+                                                <AnchorPane layoutY="156.0" prefHeight="30.0"
+                                                            styleClass="pill-info"
+                                                            AnchorPane.leftAnchor="24.0"
+                                                            AnchorPane.rightAnchor="24.0">
+                                                    <children>
+                                                        <Label fx:id="pillReclamationsLabel" layoutX="14.0" layoutY="6.0"
+                                                               text="— réclamations enregistrées" styleClass="pill-info-text" />
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </AnchorPane>
+
+                                        <AnchorPane prefHeight="170.0" styleClass="dark-panel">
+                                            <children>
+                                                <Label layoutX="24.0" layoutY="22.0" text="Actions rapides" styleClass="dark-panel-title" />
+                                                <Label layoutX="24.0" layoutY="54.0" text="Accès direct aux principales actions" styleClass="dark-panel-subtitle" />
+
+                                                <Button prefHeight="42.0"
+                                                        text="Faire une demande"
+                                                        styleClass="primary-button"
+                                                        onAction="#handleNouvelleDemande"
+                                                        AnchorPane.topAnchor="84.0"
+                                                        AnchorPane.leftAnchor="24.0"
+                                                        AnchorPane.rightAnchor="24.0" />
+                                                <Button prefHeight="42.0"
+                                                        text="Faire une réclamation"
+                                                        styleClass="action-button-dark"
+                                                        onAction="#handleNouvelleReclamation"
+                                                        AnchorPane.topAnchor="134.0"
+                                                        AnchorPane.leftAnchor="24.0"
+                                                        AnchorPane.rightAnchor="24.0" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <AnchorPane prefHeight="260.0" styleClass="section-card">
+                            <children>
+                                <Label layoutX="28.0" layoutY="22.0" text="Mes réclamations" styleClass="section-title" />
+                                <Label layoutX="28.0" layoutY="54.0" text="Consultez vos réclamations et leur état d'avancement" styleClass="section-subtitle" />
+
+                                <TableView fx:id="reclamationsTable"
+                                           prefHeight="160.0"
+                                           AnchorPane.topAnchor="84.0"
+                                           AnchorPane.leftAnchor="24.0"
+                                           AnchorPane.rightAnchor="24.0"
+                                           AnchorPane.bottomAnchor="24.0">
+                                    <columns>
+                                        <TableColumn text="ID" prefWidth="80.0" />
+                                        <TableColumn text="Objet" prefWidth="380.0" />
+                                        <TableColumn text="Date" prefWidth="130.0" />
+                                        <TableColumn text="Statut" prefWidth="130.0" />
+                                        <TableColumn text="Action" prefWidth="120.0" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+    </children>
+</AnchorPane>

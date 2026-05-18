@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0"
+            styleClass="dashboard-root"
+            stylesheets="@../../css/app.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.ac.uir.gestionhandicap.controller.admin.SaisonsController">
+
+    <children>
+
+        <AnchorPane prefWidth="250.0"
+                    styleClass="sidebar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <children>
+                <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="22.0" layoutY="22.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/logo_uir.jpg" />
+                    </image>
+                </ImageView>
+                <Label layoutX="78.0" layoutY="35.0" text="UIR" styleClass="sidebar-logo-text" />
+                <Label layoutX="22.0" layoutY="88.0" text="Espace administrateur" styleClass="sidebar-subtitle" />
+
+                <VBox layoutX="14.0" layoutY="130.0" prefWidth="222.0" spacing="6.0">
+                    <children>
+                        <Button prefHeight="40.0" prefWidth="222.0" text="Tableau de bord" styleClass="sidebar-button" onAction="#handleAccueil" />
+                        <Button prefHeight="40.0" prefWidth="222.0" text="Demandes" styleClass="sidebar-button" onAction="#handleDemandes" />
+                        <Button prefHeight="40.0" prefWidth="222.0" text="Réclamations" styleClass="sidebar-button" onAction="#handleReclamations" />
+                        <Button prefHeight="40.0" prefWidth="222.0" text="Archivage" styleClass="sidebar-button" onAction="#handleArchivage" />
+                        <Button prefHeight="40.0" prefWidth="222.0" text="Validation comptes" styleClass="sidebar-button" onAction="#handleValidationComptes" />
+                        <Button prefHeight="40.0" prefWidth="222.0" text="Statistiques" styleClass="sidebar-button" onAction="#handleStatistiques" />
+                        <Button prefHeight="40.0" prefWidth="222.0" text="Saisons" styleClass="sidebar-button-active" onAction="#handleSaisons" />
+                        <Button prefHeight="40.0" prefWidth="222.0" text="Profil" styleClass="sidebar-button" onAction="#handleProfil" />
+                    </children>
+                </VBox>
+
+                <Button prefHeight="48.0" prefWidth="222.0"
+                        text="Déconnexion"
+                        styleClass="logout-button"
+                        onAction="#handleLogout"
+                        AnchorPane.leftAnchor="14.0"
+                        AnchorPane.bottomAnchor="24.0" />
+            </children>
+        </AnchorPane>
+
+        <AnchorPane prefHeight="88.0"
+                    styleClass="topbar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label layoutX="36.0" layoutY="28.0" text="Saisons académiques" styleClass="topbar-title" />
+                <HBox alignment="CENTER_RIGHT" spacing="14.0"
+                      AnchorPane.topAnchor="0.0"
+                      AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.rightAnchor="30.0">
+                    <children>
+                        <StackPane prefHeight="40.0" prefWidth="40.0" styleClass="avatar-clickable" onMouseClicked="#handleProfil">
+                            <children>
+                                <Circle radius="20.0" styleClass="avatar" />
+                                <Label fx:id="avatarInitialLabel" text="A" styleClass="avatar-initial" />
+                            </children>
+                        </StackPane>
+                        <Label fx:id="userNameLabel" text="Admin" styleClass="topbar-user" />
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+
+        <ScrollPane fitToWidth="true"
+                    styleClass="dashboard-scroll"
+                    AnchorPane.topAnchor="88.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <content>
+                <VBox spacing="20.0" styleClass="dashboard-content">
+                    <padding>
+                        <Insets top="20.0" right="36.0" bottom="30.0" left="36.0" />
+                    </padding>
+                    <children>
+
+                        <AnchorPane prefHeight="86.0" styleClass="welcome-banner">
+                            <children>
+                                <Label layoutX="30.0" layoutY="22.0" text="Gestion des saisons" styleClass="welcome-title" />
+                                <Label fx:id="bannerActiveLabel" layoutX="30.0" layoutY="54.0"
+                                       text="Saison active : —"
+                                       styleClass="welcome-subtitle" />
+                                <Button prefHeight="42.0" prefWidth="180.0"
+                                        text="Nouvelle saison"
+                                        styleClass="primary-button"
+                                        onAction="#handleNouvelleSaison"
+                                        AnchorPane.topAnchor="22.0"
+                                        AnchorPane.rightAnchor="24.0" />
+                            </children>
+                        </AnchorPane>
+
+                        <HBox spacing="20.0">
+                            <children>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="110.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Total saisons" styleClass="stat-label" />
+                                        <Label fx:id="statTotalLabel" layoutX="22.0" layoutY="50.0" text="0" styleClass="stat-number" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="110.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Saison active" styleClass="stat-label" />
+                                        <Label fx:id="statActiveLabel" layoutX="22.0" layoutY="50.0" text="—" styleClass="stat-number" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane HBox.hgrow="ALWAYS" prefHeight="110.0" styleClass="stat-card">
+                                    <children>
+                                        <Label layoutX="22.0" layoutY="22.0" text="Saisons clôturées" styleClass="stat-label" />
+                                        <Label fx:id="statClotureesLabel" layoutX="22.0" layoutY="50.0" text="0" styleClass="stat-number" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
+
+                        <AnchorPane prefHeight="440.0" styleClass="section-card">
+                            <children>
+                                <Label layoutX="28.0" layoutY="22.0" text="Liste des saisons" styleClass="section-title" />
+                                <Label layoutX="28.0" layoutY="54.0"
+                                       text="Activez ou clôturez les saisons académiques. Une seule peut être active à la fois."
+                                       styleClass="section-subtitle" />
+
+                                <TableView fx:id="saisonsTable"
+                                           prefHeight="320.0"
+                                           AnchorPane.topAnchor="92.0"
+                                           AnchorPane.leftAnchor="24.0"
+                                           AnchorPane.rightAnchor="24.0"
+                                           AnchorPane.bottomAnchor="24.0">
+                                    <columns>
+                                        <TableColumn fx:id="colId" text="ID" prefWidth="70.0" />
+                                        <TableColumn fx:id="colLibelle" text="Libellé" prefWidth="160.0" />
+                                        <TableColumn fx:id="colDebut" text="Début" prefWidth="130.0" />
+                                        <TableColumn fx:id="colFin" text="Fin" prefWidth="130.0" />
+                                        <TableColumn fx:id="colStatut" text="Statut" prefWidth="130.0" />
+                                        <TableColumn fx:id="colActions" text="Actions" prefWidth="240.0" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+    </children>
+</AnchorPane>

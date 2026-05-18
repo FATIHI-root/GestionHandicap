@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0"
+            styleClass="dashboard-root"
+            stylesheets="@../../css/app.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.ac.uir.gestionhandicap.controller.user.NouvelleReclamationController">
+
+    <children>
+
+        <AnchorPane prefWidth="250.0"
+                    styleClass="sidebar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <children>
+                <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="22.0" layoutY="22.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/logo_uir.jpg" />
+                    </image>
+                </ImageView>
+                <Label layoutX="78.0" layoutY="35.0" text="UIR" styleClass="sidebar-logo-text" />
+                <Label layoutX="22.0" layoutY="88.0" text="Espace utilisateur" styleClass="sidebar-subtitle" />
+
+                <VBox layoutX="14.0" layoutY="130.0" prefWidth="222.0" spacing="6.0">
+                    <children>
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Accueil" styleClass="sidebar-button" onAction="#handleAccueil" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Mes demandes" styleClass="sidebar-button" onAction="#handleMesDemandes" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Mes réclamations" styleClass="sidebar-button" onAction="#handleMesReclamations" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Nouvelle demande" styleClass="sidebar-button" onAction="#handleNouvelleDemande" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Nouvelle réclamation" styleClass="sidebar-button-active" onAction="#handleNouvelleReclamation" />
+                        <Button prefHeight="44.0" prefWidth="222.0" text="Profil" styleClass="sidebar-button" onAction="#handleProfil" />
+                    </children>
+                </VBox>
+
+                <Button prefHeight="48.0" prefWidth="222.0"
+                        text="Déconnexion"
+                        styleClass="logout-button"
+                        onAction="#handleLogout"
+                        AnchorPane.leftAnchor="14.0"
+                        AnchorPane.bottomAnchor="24.0" />
+            </children>
+        </AnchorPane>
+
+        <AnchorPane prefHeight="88.0"
+                    styleClass="topbar"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label layoutX="36.0" layoutY="28.0" text="Nouvelle réclamation" styleClass="topbar-title" />
+                <HBox alignment="CENTER_RIGHT" spacing="14.0"
+                      AnchorPane.topAnchor="0.0"
+                      AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.rightAnchor="30.0">
+                    <children>
+                        <StackPane prefHeight="40.0" prefWidth="40.0" styleClass="avatar-clickable" onMouseClicked="#handleProfil">
+                            <children>
+                                <Circle radius="20.0" styleClass="avatar" />
+                                <Label fx:id="avatarInitialLabel" text="U" styleClass="avatar-initial" />
+                            </children>
+                        </StackPane>
+                        <Label fx:id="userNameLabel" text="Utilisateur" styleClass="topbar-user" />
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+
+        <ScrollPane fitToWidth="true"
+                    styleClass="dashboard-scroll"
+                    AnchorPane.topAnchor="88.0"
+                    AnchorPane.leftAnchor="250.0"
+                    AnchorPane.rightAnchor="0.0"
+                    AnchorPane.bottomAnchor="0.0">
+            <content>
+                <VBox spacing="20.0" styleClass="dashboard-content">
+                    <padding>
+                        <Insets top="20.0" right="36.0" bottom="30.0" left="36.0" />
+                    </padding>
+                    <children>
+
+                        <AnchorPane prefHeight="96.0" styleClass="welcome-banner">
+                            <children>
+                                <Label layoutX="30.0" layoutY="22.0" text="Déposer une nouvelle réclamation" styleClass="welcome-title" />
+                                <Label layoutX="30.0" layoutY="58.0"
+                                       text="Expliquez le problème rencontré afin que l'administration puisse le traiter."
+                                       styleClass="welcome-subtitle" />
+                            </children>
+                        </AnchorPane>
+
+                        <AnchorPane prefHeight="900.0" styleClass="section-card">
+                            <children>
+                                <Label layoutX="28.0" layoutY="22.0" text="Formulaire de réclamation" styleClass="section-title" />
+                                <Label layoutX="28.0" layoutY="54.0"
+                                       text="Décrivez clairement votre réclamation."
+                                       styleClass="section-subtitle" />
+
+                                <AnchorPane layoutY="88.0" prefHeight="48.0" styleClass="note-warning"
+                                            AnchorPane.leftAnchor="28.0"
+                                            AnchorPane.rightAnchor="28.0">
+                                    <children>
+                                        <Label layoutX="20.0" layoutY="15.0"
+                                               text="Votre réclamation sera enregistrée puis suivie par l'administration."
+                                               styleClass="note-warning-text" />
+                                    </children>
+                                </AnchorPane>
+
+                                <Label layoutY="158.0" text="Objet" styleClass="field-label"
+                                       AnchorPane.leftAnchor="28.0" />
+                                <TextField fx:id="objetField"
+                                           layoutY="182.0" prefHeight="46.0"
+                                           promptText="Exemple : Retard de traitement de ma demande"
+                                           AnchorPane.leftAnchor="28.0"
+                                           AnchorPane.rightAnchor="28.0" />
+
+                                <Label layoutY="248.0" text="Catégorie" styleClass="field-label"
+                                       AnchorPane.leftAnchor="28.0" />
+                                <ComboBox fx:id="categorieCombo"
+                                          layoutY="272.0" prefHeight="46.0"
+                                          promptText="Sélectionner une catégorie"
+                                          AnchorPane.leftAnchor="28.0"
+                                          AnchorPane.rightAnchor="28.0" />
+
+                                <Label layoutY="338.0" text="Niveau de priorité" styleClass="field-label"
+                                       AnchorPane.leftAnchor="28.0" />
+                                <ComboBox fx:id="prioriteCombo"
+                                          layoutY="362.0" prefHeight="46.0"
+                                          promptText="Sélectionner la priorité"
+                                          AnchorPane.leftAnchor="28.0"
+                                          AnchorPane.rightAnchor="28.0" />
+
+                                <Label layoutY="428.0" text="Description du problème" styleClass="field-label"
+                                       AnchorPane.leftAnchor="28.0" />
+                                <TextArea fx:id="descriptionField"
+                                          layoutY="452.0" prefHeight="140.0"
+                                          promptText="Décrivez le problème rencontré, le contexte, la date et les éléments utiles."
+                                          wrapText="true"
+                                          AnchorPane.leftAnchor="28.0"
+                                          AnchorPane.rightAnchor="28.0" />
+
+                                <Label layoutY="608.0" text="Pièce jointe (optionnelle)" styleClass="field-label"
+                                       AnchorPane.leftAnchor="28.0" />
+                                <AnchorPane fx:id="uploadZone"
+                                            layoutY="632.0" prefHeight="100.0"
+                                            styleClass="upload-zone"
+                                            onMouseClicked="#handleChooseFile"
+                                            onDragOver="#handleDragOver"
+                                            onDragDropped="#handleDragDropped"
+                                            AnchorPane.leftAnchor="28.0"
+                                            AnchorPane.rightAnchor="28.0">
+                                    <children>
+                                        <Rectangle layoutX="20.0" layoutY="28.0" width="44.0" height="44.0" arcWidth="12" arcHeight="12" fill="#D2D700" mouseTransparent="true" />
+                                        <Line startX="42.0" startY="38.0" endX="42.0" endY="62.0" stroke="#073567" strokeWidth="2.5" mouseTransparent="true" />
+                                        <Line startX="30.0" startY="50.0" endX="54.0" endY="50.0" stroke="#073567" strokeWidth="2.5" mouseTransparent="true" />
+                                        <Label layoutX="85.0" layoutY="22.0" text="Ajouter une pièce jointe" styleClass="upload-title" mouseTransparent="true" />
+                                        <Label layoutX="85.0" layoutY="48.0" text="Cliquer ou glisser un fichier ici — PDF, JPG, PNG" styleClass="upload-hint" mouseTransparent="true" />
+                                        <Label fx:id="fileNameLabel" layoutX="85.0" layoutY="68.0" text="Aucun fichier sélectionné" styleClass="upload-filename" mouseTransparent="true" />
+                                        <Button prefHeight="36.0" prefWidth="115.0"
+                                                text="Parcourir"
+                                                styleClass="secondary-button"
+                                                onAction="#handleChooseFile"
+                                                AnchorPane.topAnchor="32.0"
+                                                AnchorPane.rightAnchor="14.0" />
+                                    </children>
+                                </AnchorPane>
+
+                                <CheckBox fx:id="confirmCheck"
+                                          layoutY="760.0" text="Je confirme que ma réclamation est exacte et complète."
+                                          AnchorPane.leftAnchor="28.0" />
+
+                                <Button text="Envoyer la réclamation"
+                                        styleClass="primary-button"
+                                        prefHeight="48.0"
+                                        prefWidth="240.0"
+                                        onAction="#handleEnvoyer"
+                                        AnchorPane.leftAnchor="28.0"
+                                        AnchorPane.bottomAnchor="28.0" />
+
+                                <Button text="Annuler"
+                                        styleClass="outline-button"
+                                        prefHeight="48.0"
+                                        prefWidth="180.0"
+                                        onAction="#handleAnnuler"
+                                        AnchorPane.leftAnchor="288.0"
+                                        AnchorPane.bottomAnchor="28.0" />
+
+                                <Button text="Brouillon"
+                                        styleClass="secondary-button"
+                                        prefHeight="48.0"
+                                        prefWidth="180.0"
+                                        onAction="#handleEnvoyer"
+                                        AnchorPane.leftAnchor="488.0"
+                                        AnchorPane.bottomAnchor="28.0" />
+                            </children>
+                        </AnchorPane>
+
+                        <AnchorPane prefHeight="160.0" styleClass="info-banner">
+                            <children>
+                                <Label layoutX="20.0" layoutY="16.0" text="Conseils" styleClass="section-title" />
+                                <Label layoutX="20.0" layoutY="50.0" text="• Soyez clair et précis" styleClass="section-subtitle" />
+                                <Label layoutX="20.0" layoutY="74.0" text="• Mentionnez la date du problème" styleClass="section-subtitle" />
+                                <Label layoutX="20.0" layoutY="98.0" text="• Ajoutez une preuve si utile" styleClass="section-subtitle" />
+                                <Label layoutX="20.0" layoutY="122.0" text="• Vérifiez l'objet avant envoi" styleClass="section-subtitle" />
+                            </children>
+                        </AnchorPane>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+    </children>
+</AnchorPane>
